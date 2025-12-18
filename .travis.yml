@@ -1,0 +1,20 @@
+language: python
+python:
+  - "3.10"
+  - "3.11"
+
+install:
+  - pip install -r requirements.txt
+
+script:
+  - python -m pytest
+
+# Coverity Scan
+addons:
+  coverity_scan:
+    project:
+      name: "searching"
+      description: "Build submitted via Travis CI"
+    build_command_prepend: "pip install -r requirements.txt"
+    build_command: "python setup.py build"
+    branch_pattern: main
